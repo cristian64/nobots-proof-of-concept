@@ -46,5 +46,21 @@ namespace nobots_proof_of_concept
                 }
             return instance;
         }
+
+        public void Raise(Character character)
+        {
+        }
+
+        public void Drop(Character character)
+        {
+        }
+
+        public void PutOnBox(Character character)
+        {
+        }
+
+        public void Die()
+        {
+        }
     }
 }
