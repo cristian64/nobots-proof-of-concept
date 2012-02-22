@@ -19,6 +19,13 @@ namespace nobots_proof_of_concept
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Character currentCharacter;
+        MainCharacter mainCharacter;
+        Mouse mouse;
+        Ghost ghost;
+
+        public List<Element> elementList;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -86,6 +93,22 @@ namespace nobots_proof_of_concept
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        private void DrawBackground()
+        {
+        }
+
+        private void ProcessKeyboard()
+        {
+        }
+
+        private void DrawElements()
+        {
+        }
+
+        public void AddElement(Element element)
+        {
         }
     }
 }
