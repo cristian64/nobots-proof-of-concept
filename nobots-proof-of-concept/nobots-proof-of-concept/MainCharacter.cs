@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace nobots_proof_of_concept
 {
     class MainCharacter : Character
     {
+        SpriteBatch spriteBatch;
+
+        Rectangle rectangle;
+
         public MainCharacter(Game game) : base(game)
         {
         }
@@ -19,6 +24,10 @@ namespace nobots_proof_of_concept
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            texture = Game.Content.Load<Texture2D>("Girl");
+            rectangle = new Rectangle((int)(Game1.screenWidth / 5), (int)(Game1.screenHeight / 1.9), texture.Width / 2, texture.Height / 2);
+
             base.LoadContent();
         }
 
@@ -29,6 +38,10 @@ namespace nobots_proof_of_concept
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
 

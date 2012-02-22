@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace nobots_proof_of_concept
 {
     class Mouse : Character
     {
+        SpriteBatch spriteBatch;
+
+        Rectangle rectangle;
+
         public Mouse(Game game)
             : base(game)
         {
@@ -20,6 +25,10 @@ namespace nobots_proof_of_concept
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            texture = Game.Content.Load<Texture2D>("mouse");
+            rectangle = new Rectangle((int)(Game1.screenWidth / 3), (int)(Game1.screenHeight / 1.3), texture.Width/2, texture.Height/2);
+
             base.LoadContent();
         }
 
@@ -30,6 +39,10 @@ namespace nobots_proof_of_concept
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

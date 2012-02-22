@@ -7,20 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace nobots_proof_of_concept
 {
-    class Character : DrawableGameComponent
+    class Box : Element
     {
-        public Vector2 position;
-        public Vector2 direction;
-        public int width;
-        public int height;
-        public int stepSize;
-        public float rotation;
+        SpriteBatch spriteBatch;
 
-        public bool isHaunted;
+        Rectangle rectangle;
 
-        public Texture2D texture;
-
-        public Character(Game game) : base(game)
+        public Box(Game game)
+            : base(game)
         {
         }
 
@@ -31,6 +25,10 @@ namespace nobots_proof_of_concept
 
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            texture = Game.Content.Load<Texture2D>("wooden-box");
+            rectangle = new Rectangle((int)(Game1.screenWidth / 2.5),(int)(Game1.screenHeight / 1.45), texture.Width/4, texture.Height/4);
+
             base.LoadContent();
         }
 
@@ -41,6 +39,10 @@ namespace nobots_proof_of_concept
 
         public override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }
