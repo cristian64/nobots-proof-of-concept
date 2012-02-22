@@ -26,6 +26,12 @@ namespace nobots_proof_of_concept
         Mouse mouse;
         Ghost ghost;
 
+        Texture2D backgroundTexture;
+        SoundEffect mainTheme;
+
+        int screenWidth;
+        int screenHeight;
+
         public List<Element> elementList;
 
         public Game1()
@@ -43,7 +49,8 @@ namespace nobots_proof_of_concept
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            screenWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+            screenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
             base.Initialize();
         }
@@ -57,7 +64,7 @@ namespace nobots_proof_of_concept
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            backgroundTexture = Content.Load<Texture2D>("AliveBackground");
         }
 
         /// <summary>
@@ -93,13 +100,16 @@ namespace nobots_proof_of_concept
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            DrawBackground();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
         private void DrawBackground()
         {
+            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
         }
 
         private void ProcessKeyboard()
