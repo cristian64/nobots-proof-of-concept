@@ -25,12 +25,13 @@ namespace nobots_proof_of_concept
         MainCharacter mainCharacter;
         Mouse mouse;
         Ghost ghost;
+        Box box;
 
         Texture2D backgroundTexture;
         SoundEffect mainTheme;
 
-        int screenWidth;
-        int screenHeight;
+        public static int screenWidth;
+        public static int screenHeight;
 
         public List<Element> elementList;
 
@@ -51,6 +52,10 @@ namespace nobots_proof_of_concept
         {
             screenWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
             screenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+            Components.Add(new Box(this));
+            Components.Add(new Mouse(this));
+            Components.Add(new MainCharacter(this));
 
             base.Initialize();
         }
