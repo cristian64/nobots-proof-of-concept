@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nobots-proof-of-concept", "nobots-proof-of-concept\nobots-proof-of-concept\nobots-proof-of-concept.csproj", "{1A344379-E9E0-41A8-9376-0CAA5592E7B1}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "nobots-proof-of-conceptContent", "nobots-proof-of-concept\nobots-proof-of-conceptContent\nobots-proof-of-conceptContent.contentproj", "{72C102FA-603E-44A7-9B2A-A1F70E38361F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nobots-proof-of-conceptContent", "nobots-proof-of-concept\nobots-proof-of-conceptContent\nobots-proof-of-conceptContent.contentproj", "{72C102FA-603E-44A7-9B2A-A1F70E38361F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box2D.XNA - windows", "nobots-proof-of-concept\Box2D.XNA\Box2D.XNA - windows.csproj", "{22791486-E721-4511-AA4B-DA26CF5D0F2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{1A344379-E9E0-41A8-9376-0CAA5592E7B1}.Release|x86.Build.0 = Release|x86
 		{72C102FA-603E-44A7-9B2A-A1F70E38361F}.Debug|x86.ActiveCfg = Debug|x86
 		{72C102FA-603E-44A7-9B2A-A1F70E38361F}.Release|x86.ActiveCfg = Release|x86
+		{22791486-E721-4511-AA4B-DA26CF5D0F2E}.Debug|x86.ActiveCfg = Debug|x86
+		{22791486-E721-4511-AA4B-DA26CF5D0F2E}.Debug|x86.Build.0 = Debug|x86
+		{22791486-E721-4511-AA4B-DA26CF5D0F2E}.Release|x86.ActiveCfg = Release|x86
+		{22791486-E721-4511-AA4B-DA26CF5D0F2E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
