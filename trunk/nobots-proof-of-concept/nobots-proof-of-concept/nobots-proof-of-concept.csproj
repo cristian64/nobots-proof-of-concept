@@ -122,9 +122,9 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Box2D.XNA\Box2D.XNA - windows.csproj">
-      <Project>{22791486-E721-4511-AA4B-DA26CF5D0F2E}</Project>
-      <Name>Box2D.XNA - windows</Name>
+    <ProjectReference Include="..\Farseer Physics Engine 3.3 XNA\Farseer Physics XNA.csproj">
+      <Project>{0A850700-1ABB-4288-A391-6726B90EBEB9}</Project>
+      <Name>Farseer Physics XNA</Name>
     </ProjectReference>
     <ProjectReference Include="..\nobots-proof-of-conceptContent\nobots-proof-of-conceptContent.contentproj">
       <Name>nobots_proof_of_conceptContent</Name>
