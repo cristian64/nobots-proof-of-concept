@@ -8,9 +8,7 @@ namespace nobots_proof_of_concept
 {
     class MainCharacter : Character
     {
-        private MainCharacter instance;
-
-        private MainCharacter(Game game) : base(game)
+        public MainCharacter(Game game) : base(game)
         {
         }
 
@@ -32,19 +30,6 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-        }
-
-        public MainCharacter Instance()
-        {
-            if(instance == null)
-                lock(this)
-                {
-                    if(instance == null)
-                    {
-                        instance = new MainCharacter(Game);
-                    }
-                }
-            return instance;
         }
 
         public void Raise(Character character)
