@@ -29,7 +29,7 @@ namespace nobots_proof_of_concept
         Box box;
 
         Texture2D backgroundTexture;
-        SoundEffect mainTheme;
+        Song mainTheme;
 
         public static int screenWidth;
         public static int screenHeight;
@@ -40,6 +40,7 @@ namespace nobots_proof_of_concept
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
             world = new World(new Vector2(0, 1));
         }
 
@@ -71,6 +72,9 @@ namespace nobots_proof_of_concept
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             backgroundTexture = Content.Load<Texture2D>("AliveBackground");
+            mainTheme = Content.Load<Song>("gameconcept1");
+            MediaPlayer.Play(mainTheme);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>
