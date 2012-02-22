@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Box2D.XNA;
 
 namespace nobots_proof_of_concept
 {
@@ -16,6 +17,7 @@ namespace nobots_proof_of_concept
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        World world;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -30,6 +32,7 @@ namespace nobots_proof_of_concept
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            world = new World(new Vector2(0, 1), false);
         }
 
         /// <summary>
