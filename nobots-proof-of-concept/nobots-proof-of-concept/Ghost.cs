@@ -32,7 +32,7 @@ namespace nobots_proof_of_concept
 
         public override void Initialize()
         {
-            position = new Vector2(100,100);
+            position = new Vector2(-100,-100);
             particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 15, new Vector3(position.X, position.Y, 0));
             stepSize = 2;
 
@@ -91,9 +91,6 @@ namespace nobots_proof_of_concept
                     {
                         isSpaceDown = true;
                         isHaunted = false;
-                        if(prey is Mouse)
-                            Console.WriteLine("mouse");
-
                         haunt(prey);
                     }
 
@@ -129,6 +126,16 @@ namespace nobots_proof_of_concept
         {
             isHaunted = false;
             character.isHaunted = true;
+            position.X = -100;
+            position.Y = -100;
+        }
+
+        public void Unhaunt(Character character)
+        {
+            isHaunted = true;
+            Console.WriteLine(character.position.X + ", " + character.position.Y);
+            position.X = character.position.X;
+            position.Y = character.position.Y;
         }
     }
 }
