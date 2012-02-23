@@ -21,6 +21,7 @@ namespace nobots_proof_of_concept
         public MainCharacter(Game game, World world) : base(game)
         {
             this.world = world;
+            isHaunted = true;
         }
 
         public override void Initialize()
@@ -37,7 +38,7 @@ namespace nobots_proof_of_concept
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
             body.Rotation = 0.0f;
-            body.Friction = 0.001f;
+            body.Friction = 0.01f;
             body.AngularVelocity = 0.0f;
 
             base.LoadContent();
@@ -45,7 +46,7 @@ namespace nobots_proof_of_concept
 
         public override void Update(GameTime gameTime)
         {
-            processKeyboard();
+            ProcessKeyboard();
             base.Update(gameTime);
         }
 
@@ -59,17 +60,21 @@ namespace nobots_proof_of_concept
             base.Draw(gameTime);
         }
 
-        private void processKeyboard()
+        public override void ProcessKeyboard()
         {
             KeyboardState keybState = Keyboard.GetState();
 
-            if (keybState.IsKeyDown(Keys.Left))
+            if (isHaunted)
             {
-                body.ApplyForce(new Vector2(-6, 0));
-            }
-            if (keybState.IsKeyDown(Keys.Right))
-            {
-                body.ApplyForce(new Vector2(6, 0));
+                if (keybState.IsKeyDown(Keys.Left))
+                {
+                    body.ApplyForce(new Vector2(-12, 0));
+                }
+
+                if (keybState.IsKeyDown(Keys.Right))
+                {
+                    body.ApplyForce(new Vector2(12, 0));
+                }
             }
         }
 
@@ -87,6 +92,7 @@ namespace nobots_proof_of_concept
 
         public void Die()
         {
+            isHaunted = false;
         }
     }
 }

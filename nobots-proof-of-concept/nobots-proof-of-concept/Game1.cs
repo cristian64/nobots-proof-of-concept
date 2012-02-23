@@ -87,7 +87,7 @@ namespace nobots_proof_of_concept
             screenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
             Components.Add(new Box(this, world));
-            Components.Add(new Mouse(this));
+            Components.Add(new Mouse(this, world));
             Components.Add(new MainCharacter(this, world));
             Components.Add(plasmaExplosionParticleSystem = new PlasmaExplosionParticleSystem(this, Content));
 
