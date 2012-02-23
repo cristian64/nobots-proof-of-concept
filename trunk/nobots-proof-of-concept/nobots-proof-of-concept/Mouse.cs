@@ -74,7 +74,6 @@ namespace nobots_proof_of_concept
 
             if (isHaunted)
             {
-                Console.WriteLine("Mouse haunted");
                 if (keybState.IsKeyDown(Keys.Left))
                 {
                     effect = SpriteEffects.None;
@@ -89,7 +88,7 @@ namespace nobots_proof_of_concept
 
                 if (keybState.IsKeyDown(Keys.Up))
                 {
-                    if (!isUpDown)
+                    if (!isUpDown && body.LinearVelocity.Y >= -3 && body.LinearVelocity.Y <= 3)
                     {
                         isUpDown = true;
                         body.ApplyForce(new Vector2(0, -160));
@@ -99,10 +98,9 @@ namespace nobots_proof_of_concept
                 if (keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown)
                     {
-                        Console.WriteLine("unhaunting");
                         isSpaceDown = true;
                         isHaunted = false;
-                        ((Game1)Game).ghost.isHaunted = true;
+                        ((Game1)Game).ghost.Unhaunt(this);
                     }
 
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)

@@ -92,7 +92,7 @@ namespace nobots_proof_of_concept
                     {
                         isSpaceDown = true;
                         isHaunted = false;
-                        ((Game1)Game).ghost.isHaunted = true;
+                        ((Game1)Game).ghost.Unhaunt(this);
                     }
 
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
