@@ -109,6 +109,7 @@ namespace nobots_proof_of_concept
             grassDeadTexture = Content.Load<Texture2D>("dead_grass");
             mainTheme = Content.Load<Song>("gameconcept1");
             MediaPlayer.Play(mainTheme);
+            MediaPlayer.Volume = 0.3f;
             MediaPlayer.IsRepeating = true;
         }
 

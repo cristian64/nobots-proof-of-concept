@@ -39,9 +39,8 @@ namespace nobots_proof_of_concept
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
-            body.Rotation = 0.0f;
+            //body.FixedRotation = true;
             body.Friction = 0.01f;
-            body.AngularVelocity = 0.0f;
 
             base.LoadContent();
         }
