@@ -168,7 +168,7 @@ namespace nobots_proof_of_concept
                 alphaAlive = Math.Max(0.0f, alphaAlive - (float)gameTime.ElapsedGameTime.TotalSeconds);
                 alphaDead = Math.Min(1.5f, alphaDead + (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
-
+            checkButtonPressed();
             base.Update(gameTime);
         }
 
@@ -215,6 +215,12 @@ namespace nobots_proof_of_concept
             spriteBatch.Draw(buttonTexture, new Rectangle(0, screenHeight/2 + 20, buttonWidth,
                 buttonTexture.Height), Color.White);
             spriteBatch.End();
+        }
+
+        private void checkButtonPressed()
+        {
+            if (buttonTexture.Width >= mouse.body.Position.X * 50 - mouse.texture.Width/4)
+                buttonWidth = buttonTexture.Width / 2;
         }
 
         private void ProcessKeyboard()
