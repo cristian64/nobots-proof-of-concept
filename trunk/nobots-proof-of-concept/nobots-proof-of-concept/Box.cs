@@ -33,8 +33,8 @@ namespace nobots_proof_of_concept
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("wooden-box");
             rectangle = new Rectangle(500, 0, texture.Width, texture.Height);
-            body = BodyFactory.CreateRectangle(world, rectangle.Width, rectangle.Height, 1.0f);
-            body.Position = new Vector2(rectangle.X, rectangle.Y);
+            body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
+            body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
             body.Rotation = MathHelper.PiOver4 + 0.3f;
             body.Friction = 0.0f;
@@ -51,7 +51,7 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2, texture.Height/2), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2, texture.Height/2), 1.0f, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
