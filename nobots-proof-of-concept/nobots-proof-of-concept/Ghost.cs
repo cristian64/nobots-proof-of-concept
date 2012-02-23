@@ -23,6 +23,7 @@ namespace nobots_proof_of_concept
         Character prey;
 
         bool isSpaceDown;
+        int unhauntNumber;
 
         public Ghost(Game game)
             : base(game)
@@ -35,6 +36,8 @@ namespace nobots_proof_of_concept
             position = new Vector2(-100,-100);
             particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 15, new Vector3(position.X, position.Y, 0));
             stepSize = 2;
+            isSpaceDown = false;
+            unhauntNumber = 0;
 
             base.Initialize();
         }
@@ -89,13 +92,20 @@ namespace nobots_proof_of_concept
                 if (keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown && (prey = checkHauntingPossibility())!= null)
                     {
+                        if (unhauntNumber != 1)
+                        {
+                            Console.WriteLine("space pressed in ghost"); 
+                            isHaunted = false;
+                            haunt(prey);
+                        }
                         isSpaceDown = true;
-                        isHaunted = false;
-                        haunt(prey);
                     }
 
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
+                {
                     isSpaceDown = false;
+                    unhauntNumber = 0;
+                }
             }
         }
 
@@ -109,7 +119,7 @@ namespace nobots_proof_of_concept
             characterWidth = ((Game1)Game).mainCharacter.texture.Width;
             characterHeight = ((Game1)Game).mainCharacter.texture.Height;
             if (characterPos.X - 20 <= position.X && characterPos.X + characterWidth + 20 >= position.X &&
-                characterPos.Y - characterHeight/2 - 20 <= position.Y && characterPos.Y + characterHeight/2 + 20 >= position.Y)
+                characterPos.Y - characterHeight + characterWidth / 4 - 20 <= position.Y && characterPos.Y + characterWidth / 4 + 20 >= position.Y)
                 return ((Game1)Game).mainCharacter;
 
             characterPos = ((Game1)Game).mouse.body.Position * 50;
@@ -132,8 +142,9 @@ namespace nobots_proof_of_concept
 
         public void Unhaunt(Character character)
         {
+            unhauntNumber++;
             isHaunted = true;
-            Console.WriteLine(character.position.X + ", " + character.position.Y);
+            Console.WriteLine(character.body.Position.X + ", " + character.body.Position.Y);
             position.X = character.body.Position.X * 50;
             position.Y = character.body.Position.Y * 50 - 50;
         }
