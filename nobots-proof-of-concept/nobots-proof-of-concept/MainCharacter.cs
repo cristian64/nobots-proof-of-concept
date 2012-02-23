@@ -15,7 +15,6 @@ namespace nobots_proof_of_concept
         SpriteBatch spriteBatch;
 
         Rectangle rectangle;
-        public Body body;
         World world;
         public SpriteEffects effect;
 

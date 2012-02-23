@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
 
 namespace nobots_proof_of_concept
 {
@@ -15,6 +16,7 @@ namespace nobots_proof_of_concept
         public int height;
         public int stepSize;
         public float rotation;
+        public Body body;
 
         public bool isHaunted;
 
