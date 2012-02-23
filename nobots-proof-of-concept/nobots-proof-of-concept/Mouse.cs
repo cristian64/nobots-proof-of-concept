@@ -40,13 +40,11 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("mouse");
-            rectangle = new Rectangle((int)(Game1.screenWidth / 1.5), (int)(Game1.screenHeight / 1.3), texture.Width/2, texture.Height/2);
+            rectangle = new Rectangle(270, 300, texture.Width/2, texture.Height/2);
 
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
-            //body.FixedRotation = true;
-            body.Friction = 0.01f;
 
             base.LoadContent();
         }
@@ -78,11 +76,10 @@ namespace nobots_proof_of_concept
                     effect = SpriteEffects.None;
                     body.ApplyForce(new Vector2(-15, 0));
                 }
-
-                if (keybState.IsKeyDown(Keys.Right))
+                else if (keybState.IsKeyDown(Keys.Right))
                 {
                     effect = SpriteEffects.FlipHorizontally;
-                    body.ApplyForce(new Vector2(1, 0));
+                    body.ApplyForce(new Vector2(15, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Up))
