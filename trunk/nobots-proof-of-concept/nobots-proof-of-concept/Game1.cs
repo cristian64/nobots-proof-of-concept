@@ -23,6 +23,7 @@ namespace nobots_proof_of_concept
     {
         World world;
         Body floor;
+        Vertices vertices;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         PlasmaExplosionParticleSystem plasmaExplosionParticleSystem;
@@ -51,8 +52,8 @@ namespace nobots_proof_of_concept
             IsMouseVisible = true;
             world = new World(new Vector2(0, 9.81f));
 
-            Vertices vertices = new Vertices();
-            vertices.Add(0.02f * new Vector2(0, 480));
+            vertices = new Vertices();
+            vertices.Add(0.02f * new Vector2(0, 0));
             vertices.Add(0.02f * new Vector2(0, 301));
             vertices.Add(0.02f * new Vector2(23, 313));
             vertices.Add(0.02f * new Vector2(148, 415));
@@ -71,7 +72,7 @@ namespace nobots_proof_of_concept
             vertices.Add(0.02f * new Vector2(703, 225));
             vertices.Add(0.02f * new Vector2(773, 194));
             vertices.Add(0.02f * new Vector2(800, 182));
-            vertices.Add(0.02f * new Vector2(800, 480));
+            vertices.Add(0.02f * new Vector2(800, 0));
             floor = BodyFactory.CreateLoopShape(world, vertices);
         }
 
@@ -163,6 +164,10 @@ namespace nobots_proof_of_concept
             base.Draw(gameTime);
 
             DrawGrass(gameTime);
+            for (int i = 0; i < vertices.Count - 1; i++)
+            {
+                DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
+            }
         }
 
         private void DrawBackground(GameTime gameTime)
@@ -189,6 +194,18 @@ namespace nobots_proof_of_concept
 
         public void AddElement(Element element)
         {
+        }
+
+        public void DrawLine(Vector2 startPoint, Vector2 endPoint, Color color, float thickness)
+        {
+            float angle = (float)Math.Atan2(endPoint.Y - startPoint.Y, endPoint.X - startPoint.X);
+            float length = Vector2.Distance(startPoint, endPoint);
+ 
+            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            blank.SetData(new[]{Color.White});
+            spriteBatch.Begin();
+            spriteBatch.Draw(blank, startPoint, null, color, angle, Vector2.Zero, new Vector2(length, thickness), SpriteEffects.None, 0);
+            spriteBatch.End();
         }
     }
 }
