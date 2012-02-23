@@ -134,8 +134,8 @@ namespace nobots_proof_of_concept
         {
             isHaunted = true;
             Console.WriteLine(character.position.X + ", " + character.position.Y);
-            position.X = character.position.X;
-            position.Y = character.position.Y;
+            position.X = character.body.Position.X * 50;
+            position.Y = character.body.Position.Y * 50;
         }
     }
 }
