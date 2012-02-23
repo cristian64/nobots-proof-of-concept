@@ -54,24 +54,24 @@ namespace nobots_proof_of_concept
 
             vertices = new Vertices();
             vertices.Add(0.02f * new Vector2(0, 0));
-            vertices.Add(0.02f * new Vector2(0, 301));
-            vertices.Add(0.02f * new Vector2(23, 313));
-            vertices.Add(0.02f * new Vector2(148, 415));
-            vertices.Add(0.02f * new Vector2(166, 427));
-            vertices.Add(0.02f * new Vector2(213, 429));
-            vertices.Add(0.02f * new Vector2(281, 434));
-            vertices.Add(0.02f * new Vector2(325, 423));
-            vertices.Add(0.02f * new Vector2(375, 428));
-            vertices.Add(0.02f * new Vector2(432, 413));
-            vertices.Add(0.02f * new Vector2(477, 402));
-            vertices.Add(0.02f * new Vector2(525, 375));
-            vertices.Add(0.02f * new Vector2(567, 334));
-            vertices.Add(0.02f * new Vector2(601, 310));
-            vertices.Add(0.02f * new Vector2(635, 282));
-            vertices.Add(0.02f * new Vector2(666, 258));
-            vertices.Add(0.02f * new Vector2(703, 225));
-            vertices.Add(0.02f * new Vector2(773, 194));
-            vertices.Add(0.02f * new Vector2(800, 182));
+            vertices.Add(0.02f * new Vector2(0, 311));
+            vertices.Add(0.02f * new Vector2(23, 323));
+            vertices.Add(0.02f * new Vector2(148, 425));
+            vertices.Add(0.02f * new Vector2(166, 437));
+            vertices.Add(0.02f * new Vector2(213, 439));
+            vertices.Add(0.02f * new Vector2(281, 444));
+            vertices.Add(0.02f * new Vector2(325, 433));
+            vertices.Add(0.02f * new Vector2(375, 438));
+            vertices.Add(0.02f * new Vector2(432, 423));
+            vertices.Add(0.02f * new Vector2(477, 412));
+            vertices.Add(0.02f * new Vector2(525, 385));
+            vertices.Add(0.02f * new Vector2(567, 344));
+            vertices.Add(0.02f * new Vector2(601, 320));
+            vertices.Add(0.02f * new Vector2(635, 292));
+            vertices.Add(0.02f * new Vector2(666, 268));
+            vertices.Add(0.02f * new Vector2(703, 235));
+            vertices.Add(0.02f * new Vector2(773, 204));
+            vertices.Add(0.02f * new Vector2(800, 192));
             vertices.Add(0.02f * new Vector2(800, 0));
             floor = BodyFactory.CreateLoopShape(world, vertices);
         }
@@ -167,7 +167,7 @@ namespace nobots_proof_of_concept
             DrawGrass(gameTime);
             for (int i = 0; i < vertices.Count - 1; i++)
             {
-                DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
+                //DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
             }
         }
 
