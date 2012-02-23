@@ -66,10 +66,10 @@ namespace nobots_proof_of_concept
             vertices.Add(0.02f * new Vector2(0, 311));
             vertices.Add(0.02f * new Vector2(23, 323));
             vertices.Add(0.02f * new Vector2(148, 425));
-            vertices.Add(0.02f * new Vector2(166, 427));
-            vertices.Add(0.02f * new Vector2(213, 429));
-            vertices.Add(0.02f * new Vector2(281, 424));
-            vertices.Add(0.02f * new Vector2(325, 423));
+            vertices.Add(0.02f * new Vector2(166, 432));
+            vertices.Add(0.02f * new Vector2(213, 434));
+            vertices.Add(0.02f * new Vector2(281, 429));
+            vertices.Add(0.02f * new Vector2(325, 428));
             vertices.Add(0.02f * new Vector2(375, 428));
             vertices.Add(0.02f * new Vector2(432, 413));
             vertices.Add(0.02f * new Vector2(477, 402));
@@ -197,7 +197,7 @@ namespace nobots_proof_of_concept
             drawButton(gameTime);
             for (int i = 0; i < vertices.Count - 1; i++)
             {
-                //DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
+                DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
             }
         }
 
