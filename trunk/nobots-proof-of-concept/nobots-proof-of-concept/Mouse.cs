@@ -48,6 +48,8 @@ namespace nobots_proof_of_concept
             body.BodyType = BodyType.Dynamic;
             body.FixedRotation = true;
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
+            body.CollisionCategories = Category.Cat5;
+            body.CollidesWith = Category.All & ~Category.Cat4;
 
             base.LoadContent();
         }
