@@ -27,6 +27,7 @@ namespace nobots_proof_of_concept
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         PlasmaExplosionParticleSystem plasmaExplosionParticleSystem;
+        ExplosionSmokeParticleSystem explosionSmokeParticleSystem;
 
         public Character currentCharacter;
         public MainCharacter mainCharacter;
@@ -97,6 +98,7 @@ namespace nobots_proof_of_concept
             Components.Add(mainCharacter = new MainCharacter(this, world));
             Components.Add(ghost = new Ghost(this));
             Components.Add(plasmaExplosionParticleSystem = new PlasmaExplosionParticleSystem(this, Content));
+            Components.Add(explosionSmokeParticleSystem = new ExplosionSmokeParticleSystem(this, Content));
 
             base.Initialize();
         }
@@ -145,6 +147,8 @@ namespace nobots_proof_of_concept
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
             if (Keyboard.GetState().IsKeyDown(Keys.D1))
@@ -219,8 +223,30 @@ namespace nobots_proof_of_concept
 
         private void checkButtonPressed()
         {
-            if (buttonTexture.Width >= mouse.body.Position.X * 50 - mouse.texture.Width/4)
+            if (buttonTexture.Width >= mouse.body.Position.X * 50 - mouse.texture.Width / 4 && buttonWidth != buttonTexture.Width/2)
+            {
+                Random random = new Random();
                 buttonWidth = buttonTexture.Width / 2;
+                for (int i = 0; i < 80; i++)
+                {
+                    explosionSmokeParticleSystem.AddParticle(new Vector3(box.body.Position.X * 50 - 20,
+                           box.body.Position.Y * 50 - 20, 0), new Vector3(random.Next() % 300, random.Next() % 300, 0));
+                    explosionSmokeParticleSystem.AddParticle(new Vector3(box.body.Position.X * 50 - 20 - random.Next() % 70,
+                           box.body.Position.Y * 50 - 20 - random.Next() % 70, 0), 
+                           new Vector3(random.Next() % 100, random.Next() % 100, 0));
+                    explosionSmokeParticleSystem.AddParticle(new Vector3(box.body.Position.X * 50 - 20 + random.Next() % 70,
+                          box.body.Position.Y * 50 - 20 - random.Next() % 70, 0),
+                          new Vector3(random.Next() % 100, random.Next() % 100, 0));
+                    explosionSmokeParticleSystem.AddParticle(new Vector3(box.body.Position.X * 50 - 20 - random.Next() % 50,
+                          box.body.Position.Y * 50 - 20 + random.Next() % 50, 0),
+                          new Vector3(random.Next() % 100, random.Next() % 100, 0));
+                    if (i == 40)
+                    {
+                        box.body.Dispose();
+                        box.isDisposed = true;
+                    }
+                }
+            }
         }
 
         private void ProcessKeyboard()
