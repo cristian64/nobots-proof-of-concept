@@ -158,7 +158,7 @@ namespace nobots_proof_of_concept
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-            if (mainCharacter.isHaunted)
+            if (!ghost.isHaunted)
             {
                 alphaAlive = Math.Min(1.5f, alphaAlive + (float)gameTime.ElapsedGameTime.TotalSeconds);
                 alphaDead = Math.Max(0.0f, alphaDead - (float)gameTime.ElapsedGameTime.TotalSeconds);
