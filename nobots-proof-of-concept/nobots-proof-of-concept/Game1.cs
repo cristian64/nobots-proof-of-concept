@@ -34,6 +34,7 @@ namespace nobots_proof_of_concept
         public Ghost ghost;
         Box box;
 
+        Texture2D buttonTexture;
         Texture2D controlsTexture;
         Texture2D backgroundAliveTexture;
         Texture2D grassAliveTexture;
@@ -41,6 +42,7 @@ namespace nobots_proof_of_concept
         Texture2D grassDeadTexture;
         float alphaAlive = 1.5f;
         float alphaDead = 0.0f;
+        int buttonWidth;
         Song mainTheme;
 
         public static int screenWidth;
@@ -108,6 +110,7 @@ namespace nobots_proof_of_concept
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            buttonTexture = Content.Load<Texture2D>("button");
             controlsTexture = Content.Load<Texture2D>("controls");
             backgroundAliveTexture = Content.Load<Texture2D>("alive_nograss");
             grassAliveTexture = Content.Load<Texture2D>("alive_grass");
@@ -117,6 +120,8 @@ namespace nobots_proof_of_concept
             MediaPlayer.Play(mainTheme);
             MediaPlayer.Volume = 0.3f;
             MediaPlayer.IsRepeating = true;
+
+            buttonWidth = buttonTexture.Width;
         }
 
         /// <summary>
@@ -180,6 +185,7 @@ namespace nobots_proof_of_concept
             base.Draw(gameTime);
 
             DrawGrass(gameTime);
+            drawButton(gameTime);
             for (int i = 0; i < vertices.Count - 1; i++)
             {
                 //DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
@@ -200,6 +206,14 @@ namespace nobots_proof_of_concept
             spriteBatch.Begin();
             spriteBatch.Draw(grassAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaAlive);
             spriteBatch.Draw(grassDeadTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaDead);
+            spriteBatch.End();
+        }
+
+        private void drawButton(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(buttonTexture, new Rectangle(0, screenHeight/2 + 20, buttonWidth,
+                buttonTexture.Height), Color.White);
             spriteBatch.End();
         }
 
