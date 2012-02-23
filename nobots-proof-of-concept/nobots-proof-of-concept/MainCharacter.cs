@@ -37,9 +37,8 @@ namespace nobots_proof_of_concept
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
-            body.Rotation = 0.0f;
-            body.Friction = 0.01f;
-            body.AngularVelocity = 0.0f;
+            body.FixedRotation = true;
+            body.Friction = 10f;
 
             base.LoadContent();
         }
@@ -68,12 +67,12 @@ namespace nobots_proof_of_concept
             {
                 if (keybState.IsKeyDown(Keys.Left))
                 {
-                    body.ApplyForce(new Vector2(-12, 0));
+                    body.ApplyForce(new Vector2(-120, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Right))
                 {
-                    body.ApplyForce(new Vector2(12, 0));
+                    body.ApplyForce(new Vector2(120, 0));
                 }
             }
         }
