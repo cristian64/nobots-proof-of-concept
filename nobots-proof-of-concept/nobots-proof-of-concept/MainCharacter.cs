@@ -40,11 +40,10 @@ namespace nobots_proof_of_concept
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("Girl");
             rectangle = new Rectangle((int)(Game1.screenWidth / 5), (int)(Game1.screenHeight / 1.7), texture.Width, texture.Height);
-            body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
+            body = BodyFactory.CreateCircle(world, 0.02f * rectangle.Width / 4.0f, 50.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
-            body.FixedRotation = true;
-            body.Friction = 10f;
+            body.Friction = 10000.0f;
 
             base.LoadContent();
         }
@@ -58,7 +57,7 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2,texture.Height/2), 1.0f, effect, 0);
+            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, 0.0f, new Vector2(texture.Width / 2, texture.Height - texture.Width / 4), 1.0f, effect, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -72,14 +71,20 @@ namespace nobots_proof_of_concept
             {
                 if (keybState.IsKeyDown(Keys.Left))
                 {
+                    body.FixedRotation = false;
                     effect = SpriteEffects.FlipHorizontally;
-                    body.ApplyForce(new Vector2(-120, 0));
+                    body.AngularVelocity = -20.0f;
                 }
-
-                if (keybState.IsKeyDown(Keys.Right))
+                else if (keybState.IsKeyDown(Keys.Right))
                 {
+                    body.FixedRotation = false;
                     effect = SpriteEffects.None;
-                    body.ApplyForce(new Vector2(120, 0));
+                    body.AngularVelocity = 20.0f;
+                }
+                else
+                {
+                    body.FixedRotation = true;
+                    body.AngularVelocity = 0.0f;
                 }
 
                 if(keybState.IsKeyDown(Keys.Space))

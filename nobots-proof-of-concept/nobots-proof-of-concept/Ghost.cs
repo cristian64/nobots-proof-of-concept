@@ -33,7 +33,7 @@ namespace nobots_proof_of_concept
         public override void Initialize()
         {
             position = new Vector2(100,100);
-            particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 20, new Vector3(position.X, position.Y, 0));
+            particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 15, new Vector3(position.X, position.Y, 0));
             stepSize = 2;
 
             base.Initialize();
@@ -57,12 +57,6 @@ namespace nobots_proof_of_concept
 
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
-       //     if(isHaunted)
-             //   spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width / 2, texture.Height / 2),
-              //      0.5f, SpriteEffects.None, 0);
-            spriteBatch.End();
-
             base.Draw(gameTime);
         }
 
