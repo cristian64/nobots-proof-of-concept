@@ -33,7 +33,7 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("Girl");
-            rectangle = new Rectangle((int)(Game1.screenWidth / 5), (int)(Game1.screenHeight / 1.7), texture.Width /2, texture.Height /2);
+            rectangle = new Rectangle((int)(Game1.screenWidth / 5), (int)(Game1.screenHeight / 1.7), texture.Width, texture.Height);
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
@@ -52,8 +52,7 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2,texture.Height/2),
-                0.5f, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2,texture.Height/2), 1.0f, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
