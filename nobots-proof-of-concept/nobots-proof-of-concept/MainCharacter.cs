@@ -47,6 +47,8 @@ namespace nobots_proof_of_concept
             body.Friction = 10000.0f;
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
             body.OnSeparation += new OnSeparationEventHandler(body_OnSeparation);
+            body.CollisionCategories = Category.Cat4;
+            body.CollidesWith = Category.All & ~Category.Cat5;
 
             base.LoadContent();
         }
