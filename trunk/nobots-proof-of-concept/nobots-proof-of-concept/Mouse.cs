@@ -108,7 +108,7 @@ namespace nobots_proof_of_concept
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
                 {
                     isSpaceDown = false;
-                    ((Game1)Game).ghost.unhauntNumber = 0;
+                    ((Game1)Game).ghost.unhauntNumber = 1;
                 }
 
                 if (keybState.IsKeyUp(Keys.Up) && isUpDown)
