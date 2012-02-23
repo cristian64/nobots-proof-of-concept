@@ -34,6 +34,7 @@ namespace nobots_proof_of_concept
         public Ghost ghost;
         Box box;
 
+        Texture2D controlsTexture;
         Texture2D backgroundAliveTexture;
         Texture2D grassAliveTexture;
         Texture2D backgroundDeadTexture;
@@ -107,6 +108,7 @@ namespace nobots_proof_of_concept
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            controlsTexture = Content.Load<Texture2D>("controls");
             backgroundAliveTexture = Content.Load<Texture2D>("alive_nograss");
             grassAliveTexture = Content.Load<Texture2D>("alive_grass");
             backgroundDeadTexture = Content.Load<Texture2D>("dead_nograss");
@@ -189,6 +191,7 @@ namespace nobots_proof_of_concept
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaAlive);
             spriteBatch.Draw(backgroundDeadTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaDead);
+            spriteBatch.Draw(controlsTexture, new Vector2(screenWidth - controlsTexture.Width, 0), Color.White);
             spriteBatch.End();
         }
 
