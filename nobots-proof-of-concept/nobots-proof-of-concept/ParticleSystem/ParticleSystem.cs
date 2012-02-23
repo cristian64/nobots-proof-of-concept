@@ -390,10 +390,6 @@ namespace nobots_proof_of_concept.ParticleSystem
                 device.DepthStencilState = DepthStencilState.DepthRead;
 
                 // Set the current status of the camera.
-                //effectViewParameter.SetValue(Matrix.CreateLookAt(new Vector3(0, 1, 0), Vector3.Zero, Vector3.Up));
-                /*effectViewParameter.SetValue(Matrix.CreateLookAt(new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, -5f), Vector3.UnitZ, Vector3.Up));
-                effectProjectionParameter.SetValue(Matrix.CreateOrthographic(device.Viewport.Width, device.Viewport.Height, 0.01f, 10000));*/
-
                 effectViewParameter.SetValue(new Matrix(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f));
                 effectProjectionParameter.SetValue(Matrix.CreateOrthographicOffCenter(0, device.Viewport.Width, -device.Viewport.Height, 0, 0, 1));
 

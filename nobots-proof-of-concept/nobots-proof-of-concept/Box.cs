@@ -32,13 +32,13 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("wooden-box");
-            rectangle = new Rectangle(500, 0, texture.Width, texture.Height);
+            rectangle = new Rectangle(700, 0, texture.Width, texture.Height);
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
             body.Rotation = MathHelper.PiOver4 + 0.3f;
-            body.Friction = 0.0f;
-            body.AngularVelocity = 1;
+            body.Friction = 10.0f;
+            body.AngularVelocity = -1;
 
             base.LoadContent();
         }
