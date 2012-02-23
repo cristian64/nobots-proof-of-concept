@@ -63,7 +63,7 @@ namespace nobots_proof_of_concept
 
             Components.Add(new Box(this, world));
             Components.Add(new Mouse(this));
-            Components.Add(new MainCharacter(this));
+            Components.Add(new MainCharacter(this, world));
             Components.Add(plasmaExplosionParticleSystem = new PlasmaExplosionParticleSystem(this, Content));
 
             base.Initialize();
