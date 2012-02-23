@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics.Contacts;
 
 namespace nobots_proof_of_concept
 {
@@ -45,8 +46,17 @@ namespace nobots_proof_of_concept
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
+            body.FixedRotation = true;
+            body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
 
             base.LoadContent();
+        }
+
+        bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body == ((Game1)Game).floor)
+                body.FixedRotation = false;
+            return true;
         }
 
         public override void Update(GameTime gameTime)
