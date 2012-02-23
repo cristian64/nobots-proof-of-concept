@@ -98,12 +98,18 @@ namespace nobots_proof_of_concept
                     if (!isSpaceDown)
                     {
                         isSpaceDown = true;
-                        isHaunted = false;
-                        ((Game1)Game).ghost.Unhaunt(this);
+                        if (((Game1)Game).ghost.unhauntNumber != 0)
+                        {
+                            isHaunted = false;
+                            ((Game1)Game).ghost.Unhaunt(this);
+                        }
                     }
 
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
+                {
                     isSpaceDown = false;
+                    ((Game1)Game).ghost.unhauntNumber = 0;
+                }
 
                 if (keybState.IsKeyUp(Keys.Up) && isUpDown)
                     isUpDown = false;

@@ -23,7 +23,7 @@ namespace nobots_proof_of_concept
         Character prey;
 
         bool isSpaceDown;
-        int unhauntNumber;
+        public int unhauntNumber;
 
         public Ghost(Game game)
             : base(game)
@@ -89,6 +89,12 @@ namespace nobots_proof_of_concept
                     position.Y += stepSize;
                 }
 
+                if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
+                {
+                    isSpaceDown = false;
+                    unhauntNumber = 0;
+                }
+
                 if (keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown && (prey = checkHauntingPossibility())!= null)
                     {
@@ -100,13 +106,7 @@ namespace nobots_proof_of_concept
                         }
                         isSpaceDown = true;
                     }
-
-                if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
-                {
-                    isSpaceDown = false;
-                    unhauntNumber = 0;
                 }
-            }
         }
 
         private Character checkHauntingPossibility()
@@ -142,7 +142,7 @@ namespace nobots_proof_of_concept
 
         public void Unhaunt(Character character)
         {
-            unhauntNumber++;
+            unhauntNumber = 1;
             isHaunted = true;
             Console.WriteLine(character.body.Position.X + ", " + character.body.Position.Y);
             position.X = character.body.Position.X * 50;
