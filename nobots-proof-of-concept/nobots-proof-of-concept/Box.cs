@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 namespace nobots_proof_of_concept
 {
@@ -12,10 +14,13 @@ namespace nobots_proof_of_concept
         SpriteBatch spriteBatch;
 
         Rectangle rectangle;
+        Body body;
+        World world;
 
-        public Box(Game game)
+        public Box(Game game, World world)
             : base(game)
         {
+            this.world = world;
         }
 
         public override void Initialize()
@@ -27,7 +32,13 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("wooden-box");
-            rectangle = new Rectangle((int)(Game1.screenWidth / 2.5),(int)(Game1.screenHeight / 1.45), texture.Width/4, texture.Height/4);
+            rectangle = new Rectangle(500, 0, texture.Width, texture.Height);
+            body = BodyFactory.CreateRectangle(world, rectangle.Width, rectangle.Height, 1.0f);
+            body.Position = new Vector2(rectangle.X, rectangle.Y);
+            body.BodyType = BodyType.Dynamic;
+            body.Rotation = MathHelper.PiOver4 + 0.3f;
+            body.Friction = 0.0f;
+            body.AngularVelocity = 1;
 
             base.LoadContent();
         }
@@ -40,7 +51,7 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.Draw(texture, body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2, texture.Height/2), 1.0f, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
