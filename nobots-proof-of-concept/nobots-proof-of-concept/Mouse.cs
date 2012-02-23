@@ -68,12 +68,17 @@ namespace nobots_proof_of_concept
             {
                 if (keybState.IsKeyDown(Keys.Left))
                 {
-                    body.ApplyForce(new Vector2(-9, 0));
+                    body.ApplyForce(new Vector2(-15, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Right))
                 {
-                    body.ApplyForce(new Vector2(9, 0));
+                    body.ApplyForce(new Vector2(15, 0));
+                }
+
+                if (keybState.IsKeyDown(Keys.Up))
+                {
+                    body.ApplyForce(new Vector2(-15, 0));
                 }
             }
         }
