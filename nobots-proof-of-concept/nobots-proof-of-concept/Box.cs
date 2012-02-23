@@ -14,8 +14,10 @@ namespace nobots_proof_of_concept
         SpriteBatch spriteBatch;
 
         Rectangle rectangle;
-        Body body;
+        public Body body;
         World world;
+
+        public bool isDisposed;
 
         public Box(Game game, World world)
             : base(game)
@@ -25,6 +27,8 @@ namespace nobots_proof_of_concept
 
         public override void Initialize()
         {
+            isDisposed = false;
+
             base.Initialize();
         }
 
@@ -49,7 +53,8 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2, texture.Height/2), 1.0f, SpriteEffects.None, 0);
+            if(!isDisposed)
+                spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2, texture.Height/2), 1.0f, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
