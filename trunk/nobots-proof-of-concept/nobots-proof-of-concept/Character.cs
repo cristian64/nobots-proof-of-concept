@@ -43,5 +43,9 @@ namespace nobots_proof_of_concept
         {
             base.Draw(gameTime);
         }
+
+        public virtual void ProcessKeyboard()
+        {
+        }
     }
 }
