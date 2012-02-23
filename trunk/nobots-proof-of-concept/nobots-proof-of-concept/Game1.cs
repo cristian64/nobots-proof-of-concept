@@ -28,10 +28,10 @@ namespace nobots_proof_of_concept
         SpriteBatch spriteBatch;
         PlasmaExplosionParticleSystem plasmaExplosionParticleSystem;
 
-        Character currentCharacter;
-        MainCharacter mainCharacter;
-        Mouse mouse;
-        Ghost ghost;
+        public Character currentCharacter;
+        public MainCharacter mainCharacter;
+        public Mouse mouse;
+        public Ghost ghost;
         Box box;
 
         Texture2D backgroundAliveTexture;
@@ -87,9 +87,10 @@ namespace nobots_proof_of_concept
             screenWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
             screenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
-            Components.Add(new Box(this, world));
-            Components.Add(new Mouse(this, world));
-            Components.Add(new MainCharacter(this, world));
+            Components.Add(box = new Box(this, world));
+            Components.Add(mouse = new Mouse(this, world));
+            Components.Add(mainCharacter = new MainCharacter(this, world));
+            Components.Add(ghost = new Ghost(this));
             Components.Add(plasmaExplosionParticleSystem = new PlasmaExplosionParticleSystem(this, Content));
 
             base.Initialize();

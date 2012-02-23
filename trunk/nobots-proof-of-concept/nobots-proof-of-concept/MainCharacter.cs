@@ -10,14 +10,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace nobots_proof_of_concept
 {
-    class MainCharacter : Character
+    public class MainCharacter : Character
     {
         SpriteBatch spriteBatch;
 
         Rectangle rectangle;
-        Body body;
+        public Body body;
         World world;
-        SpriteEffects effect;
+        public SpriteEffects effect;
+
+        bool isSpaceDown;
 
         public MainCharacter(Game game, World world) : base(game)
         {
@@ -28,6 +30,7 @@ namespace nobots_proof_of_concept
         {
             effect = SpriteEffects.None;
             isHaunted = true;
+            isSpaceDown = false;
 
             base.Initialize();
         }
@@ -78,6 +81,17 @@ namespace nobots_proof_of_concept
                     effect = SpriteEffects.None;
                     body.ApplyForce(new Vector2(120, 0));
                 }
+
+                if(keybState.IsKeyDown(Keys.Space))
+                    if (!isSpaceDown)
+                    {
+                        isSpaceDown = true;
+                        isHaunted = false;
+                        ((Game1)Game).ghost.isHaunted = true;
+                    }
+
+                if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
+                    isSpaceDown = false;
             }
         }
 
