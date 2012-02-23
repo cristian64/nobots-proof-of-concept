@@ -10,13 +10,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace nobots_proof_of_concept
 {
-    class Mouse : Character
+    public class Mouse : Character
     {
         SpriteBatch spriteBatch;
 
         Rectangle rectangle;
-        Body body;
+        public Body body;
         World world;
+        SpriteEffects effect;
+
+        bool isSpaceDown;
+        bool isUpDown;
 
         public Mouse(Game game, World world)
             : base(game)
@@ -27,6 +31,9 @@ namespace nobots_proof_of_concept
 
         public override void Initialize()
         {
+            isSpaceDown = false;
+            isUpDown = false;
+            effect = SpriteEffects.None;
             base.Initialize();
         }
 
@@ -47,6 +54,7 @@ namespace nobots_proof_of_concept
 
         public override void Update(GameTime gameTime)
         {
+            ProcessKeyboard();
             base.Update(gameTime);
         }
 
@@ -54,7 +62,7 @@ namespace nobots_proof_of_concept
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width / 2, texture.Height / 2),
-                0.5f, SpriteEffects.None, 0);
+                0.5f, effect, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -66,20 +74,42 @@ namespace nobots_proof_of_concept
 
             if (isHaunted)
             {
+                Console.WriteLine("Mouse haunted");
                 if (keybState.IsKeyDown(Keys.Left))
                 {
+                    effect = SpriteEffects.None;
                     body.ApplyForce(new Vector2(-15, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Right))
                 {
-                    body.ApplyForce(new Vector2(15, 0));
+                    effect = SpriteEffects.FlipHorizontally;
+                    body.ApplyForce(new Vector2(1, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Up))
                 {
-                    body.ApplyForce(new Vector2(-15, 0));
+                    if (!isUpDown)
+                    {
+                        isUpDown = true;
+                        body.ApplyForce(new Vector2(0, -160));
+                    }
                 }
+
+                if (keybState.IsKeyDown(Keys.Space))
+                    if (!isSpaceDown)
+                    {
+                        Console.WriteLine("unhaunting");
+                        isSpaceDown = true;
+                        isHaunted = false;
+                        ((Game1)Game).ghost.isHaunted = true;
+                    }
+
+                if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
+                    isSpaceDown = false;
+
+                if (keybState.IsKeyUp(Keys.Up) && isUpDown)
+                    isUpDown = false;
             }
         }
     }

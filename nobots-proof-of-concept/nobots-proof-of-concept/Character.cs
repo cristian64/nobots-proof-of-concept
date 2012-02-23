@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace nobots_proof_of_concept
 {
-    class Character : DrawableGameComponent
+    public class Character : DrawableGameComponent
     {
         public Vector2 position;
         public Vector2 direction;
