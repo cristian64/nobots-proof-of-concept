@@ -134,6 +134,7 @@ namespace nobots_proof_of_concept
 
         private void haunt(Character character)
         {
+            ((Game1)Game).Change.Play();
             isHaunted = false;
             character.isHaunted = true;
             position.X = -100;
@@ -142,6 +143,7 @@ namespace nobots_proof_of_concept
 
         public void Unhaunt(Character character)
         {
+            ((Game1)Game).Change.Play();
             unhauntNumber = 1;
             isHaunted = true;
             Console.WriteLine(character.body.Position.X + ", " + character.body.Position.Y);
