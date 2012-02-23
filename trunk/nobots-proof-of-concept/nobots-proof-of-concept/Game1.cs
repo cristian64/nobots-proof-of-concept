@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 namespace nobots_proof_of_concept
 {
@@ -19,6 +20,7 @@ namespace nobots_proof_of_concept
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         World world;
+        Body floor;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -41,7 +43,9 @@ namespace nobots_proof_of_concept
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            world = new World(new Vector2(0, 1));
+            world = new World(new Vector2(0, 10000));
+            floor = BodyFactory.CreateRectangle(world, 800, 1, 1);
+            floor.Position = new Vector2(400, 481);
         }
 
         /// <summary>
@@ -55,7 +59,7 @@ namespace nobots_proof_of_concept
             screenWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
             screenHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
-            Components.Add(new Box(this));
+            Components.Add(new Box(this, world));
             Components.Add(new Mouse(this));
             Components.Add(new MainCharacter(this));
 
@@ -98,6 +102,7 @@ namespace nobots_proof_of_concept
                 this.Exit();
 
             // TODO: Add your update logic here
+            world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             base.Update(gameTime);
         }
