@@ -17,15 +17,18 @@ namespace nobots_proof_of_concept
         Rectangle rectangle;
         Body body;
         World world;
+        SpriteEffects effect;
 
         public MainCharacter(Game game, World world) : base(game)
         {
             this.world = world;
-            isHaunted = true;
         }
 
         public override void Initialize()
         {
+            effect = SpriteEffects.None;
+            isHaunted = true;
+
             base.Initialize();
         }
 
@@ -52,7 +55,7 @@ namespace nobots_proof_of_concept
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2,texture.Height/2), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, 50.0f * body.Position, null, Color.White, body.Rotation, new Vector2(texture.Width/2,texture.Height/2), 1.0f, effect, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -66,11 +69,13 @@ namespace nobots_proof_of_concept
             {
                 if (keybState.IsKeyDown(Keys.Left))
                 {
+                    effect = SpriteEffects.FlipHorizontally;
                     body.ApplyForce(new Vector2(-120, 0));
                 }
 
                 if (keybState.IsKeyDown(Keys.Right))
                 {
+                    effect = SpriteEffects.None;
                     body.ApplyForce(new Vector2(120, 0));
                 }
             }
