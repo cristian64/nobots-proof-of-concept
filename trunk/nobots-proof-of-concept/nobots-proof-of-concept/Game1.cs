@@ -57,6 +57,8 @@ namespace nobots_proof_of_concept
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferMultiSampling = true;
+            Window.Title = "Nobots - Proof of Concept";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             world = new World(new Vector2(0, 9.81f));
