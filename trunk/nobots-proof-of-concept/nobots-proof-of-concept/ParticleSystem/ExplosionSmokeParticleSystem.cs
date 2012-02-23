@@ -53,11 +53,11 @@ namespace nobots_proof_of_concept.ParticleSystem
             settings.MinRotateSpeed = -1;
             settings.MaxRotateSpeed = 1;
 
-            settings.MinStartSize = 0.5f;
-            settings.MaxStartSize = 1;
+            settings.MinStartSize = 125f;
+            settings.MaxStartSize = 135;
 
-            settings.MinEndSize = 1.5f;
-            settings.MaxEndSize = 2;
+            settings.MinEndSize = 140f;
+            settings.MaxEndSize = 145f;
         }
     }
 }
