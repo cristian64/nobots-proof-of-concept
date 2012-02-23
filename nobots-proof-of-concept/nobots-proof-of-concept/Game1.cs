@@ -38,6 +38,8 @@ namespace nobots_proof_of_concept
         Texture2D grassAliveTexture;
         Texture2D backgroundDeadTexture;
         Texture2D grassDeadTexture;
+        float alphaAlive = 1.5f;
+        float alphaDead = 0.0f;
         Song mainTheme;
 
         public static int screenWidth;
@@ -149,6 +151,17 @@ namespace nobots_proof_of_concept
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
+            if (mainCharacter.isHaunted)
+            {
+                alphaAlive = Math.Min(1.5f, alphaAlive + (float)gameTime.ElapsedGameTime.TotalSeconds);
+                alphaDead = Math.Max(0.0f, alphaDead - (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+            else
+            {
+                alphaAlive = Math.Max(0.0f, alphaAlive - (float)gameTime.ElapsedGameTime.TotalSeconds);
+                alphaDead = Math.Min(1.5f, alphaDead + (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+
             base.Update(gameTime);
         }
 
@@ -174,14 +187,16 @@ namespace nobots_proof_of_concept
         private void DrawBackground(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(backgroundAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+            spriteBatch.Draw(backgroundAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaAlive);
+            spriteBatch.Draw(backgroundDeadTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaDead);
             spriteBatch.End();
         }
 
         private void DrawGrass(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(grassAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+            spriteBatch.Draw(grassAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaAlive);
+            spriteBatch.Draw(grassDeadTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White * alphaDead);
             spriteBatch.End();
         }
 
