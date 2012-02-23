@@ -38,7 +38,7 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("Girl");
-            rectangle = new Rectangle((int)(Game1.screenWidth / 5), (int)(Game1.screenHeight / 1.7), texture.Width, texture.Height);
+            rectangle = new Rectangle((int)(Game1.screenWidth / 2), (int)(Game1.screenHeight / 1.7), texture.Width, texture.Height);
             body = BodyFactory.CreateCircle(world, 0.02f * rectangle.Width / 4.0f, 50.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
@@ -49,7 +49,7 @@ namespace nobots_proof_of_concept
 
         public override void Update(GameTime gameTime)
         {
-            ProcessKeyboard();
+            ProcessKeyboard();  
             base.Update(gameTime);
         }
 

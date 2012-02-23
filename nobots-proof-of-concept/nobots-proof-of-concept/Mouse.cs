@@ -40,7 +40,7 @@ namespace nobots_proof_of_concept
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Game.Content.Load<Texture2D>("mouse");
-            rectangle = new Rectangle((int)(Game1.screenWidth / 3), (int)(Game1.screenHeight / 1.3), texture.Width/2, texture.Height/2);
+            rectangle = new Rectangle((int)(Game1.screenWidth / 1.5), (int)(Game1.screenHeight / 1.3), texture.Width/2, texture.Height/2);
 
             body = BodyFactory.CreateRectangle(world, 0.02f * rectangle.Width, 0.02f * rectangle.Height, 1.0f);
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
