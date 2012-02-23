@@ -12,6 +12,7 @@ using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using nobots_proof_of_concept.ParticleSystem;
+using FarseerPhysics.Common;
 
 namespace nobots_proof_of_concept
 {
@@ -32,7 +33,10 @@ namespace nobots_proof_of_concept
         Ghost ghost;
         Box box;
 
-        Texture2D backgroundTexture;
+        Texture2D backgroundAliveTexture;
+        Texture2D grassAliveTexture;
+        Texture2D backgroundDeadTexture;
+        Texture2D grassDeadTexture;
         Song mainTheme;
 
         public static int screenWidth;
@@ -46,8 +50,29 @@ namespace nobots_proof_of_concept
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             world = new World(new Vector2(0, 9.81f));
-            floor = BodyFactory.CreateRectangle(world, 0.02f * 800, 0.02f * 1, 1);
-            floor.Position = new Vector2(0.02f * 400, 0.02f * 481);
+
+            Vertices vertices = new Vertices();
+            vertices.Add(0.02f * new Vector2(0, 480));
+            vertices.Add(0.02f * new Vector2(0, 301));
+            vertices.Add(0.02f * new Vector2(23, 313));
+            vertices.Add(0.02f * new Vector2(148, 415));
+            vertices.Add(0.02f * new Vector2(166, 427));
+            vertices.Add(0.02f * new Vector2(213, 429));
+            vertices.Add(0.02f * new Vector2(281, 434));
+            vertices.Add(0.02f * new Vector2(325, 423));
+            vertices.Add(0.02f * new Vector2(375, 428));
+            vertices.Add(0.02f * new Vector2(432, 413));
+            vertices.Add(0.02f * new Vector2(477, 402));
+            vertices.Add(0.02f * new Vector2(525, 375));
+            vertices.Add(0.02f * new Vector2(567, 334));
+            vertices.Add(0.02f * new Vector2(601, 310));
+            vertices.Add(0.02f * new Vector2(635, 282));
+            vertices.Add(0.02f * new Vector2(666, 258));
+            vertices.Add(0.02f * new Vector2(703, 225));
+            vertices.Add(0.02f * new Vector2(773, 194));
+            vertices.Add(0.02f * new Vector2(800, 182));
+            vertices.Add(0.02f * new Vector2(800, 480));
+            floor = BodyFactory.CreateLoopShape(world, vertices);
         }
 
         /// <summary>
@@ -78,7 +103,10 @@ namespace nobots_proof_of_concept
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            backgroundTexture = Content.Load<Texture2D>("AliveBackground");
+            backgroundAliveTexture = Content.Load<Texture2D>("alive_nograss");
+            grassAliveTexture = Content.Load<Texture2D>("alive_grass");
+            backgroundDeadTexture = Content.Load<Texture2D>("dead_nograss");
+            grassDeadTexture = Content.Load<Texture2D>("dead_grass");
             mainTheme = Content.Load<Song>("gameconcept1");
             MediaPlayer.Play(mainTheme);
             MediaPlayer.IsRepeating = true;
@@ -92,6 +120,9 @@ namespace nobots_proof_of_concept
         {
             // TODO: Unload any non ContentManager content here
         }
+
+
+        Microsoft.Xna.Framework.Input.MouseState prevMouseState;
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -107,6 +138,11 @@ namespace nobots_proof_of_concept
             if (Keyboard.GetState().IsKeyDown(Keys.D1))
                 plasmaExplosionParticleSystem.AddParticle(new Vector3(100, 50, 0), Vector3.Zero);
 
+            if (Microsoft.Xna.Framework.Input.Mouse.GetState().LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+                Console.WriteLine(Microsoft.Xna.Framework.Input.Mouse.GetState().X + " " + Microsoft.Xna.Framework.Input.Mouse.GetState().Y);
+            prevMouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
+
+
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
@@ -121,16 +157,25 @@ namespace nobots_proof_of_concept
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-            DrawBackground();
-            spriteBatch.End();
+            DrawBackground(gameTime);
 
             base.Draw(gameTime);
+
+            DrawGrass(gameTime);
         }
 
-        private void DrawBackground()
+        private void DrawBackground(GameTime gameTime)
         {
-            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+            spriteBatch.End();
+        }
+
+        private void DrawGrass(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(grassAliveTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+            spriteBatch.End();
         }
 
         private void ProcessKeyboard()

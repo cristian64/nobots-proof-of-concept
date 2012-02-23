@@ -42,18 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AliveBackground.jpg">
-      <Name>AliveBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="DeadBackground.jpg">
-      <Name>DeadBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="mouse.png">
       <Name>mouse</Name>
       <Importer>TextureImporter</Importer>
