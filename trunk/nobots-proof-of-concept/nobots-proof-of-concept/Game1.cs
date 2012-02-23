@@ -22,7 +22,7 @@ namespace nobots_proof_of_concept
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         World world;
-        Body floor;
+        public Body floor;
         Vertices vertices;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;

@@ -46,16 +46,16 @@ namespace nobots_proof_of_concept.ParticleSystem
 
             settings.EndVelocity = 0;
 
-            settings.MinColor = Color.White;
+            settings.MinColor = Color.White * 0.7f;
             settings.MaxColor = Color.White;
 
-            settings.MinRotateSpeed = -1;
-            settings.MaxRotateSpeed = 1;
+            settings.MinRotateSpeed = -5;
+            settings.MaxRotateSpeed = 5;
 
-            settings.MinStartSize = 75f;
-            settings.MaxStartSize = 75f;
+            settings.MinStartSize = 70f;
+            settings.MaxStartSize = 80f;
 
-            settings.MinEndSize = 75f;
+            settings.MinEndSize = 85f;
             settings.MaxEndSize = 100f;
 
             // Use additive blending.
