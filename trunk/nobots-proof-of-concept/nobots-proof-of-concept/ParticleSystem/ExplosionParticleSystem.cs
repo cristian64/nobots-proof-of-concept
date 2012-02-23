@@ -52,11 +52,11 @@ namespace nobots_proof_of_concept.ParticleSystem
             settings.MinRotateSpeed = -1;
             settings.MaxRotateSpeed = 1;
 
-            settings.MinStartSize = 0.5f;
-            settings.MaxStartSize = 0.5f;
+            settings.MinStartSize = 80f;
+            settings.MaxStartSize = 85f;
 
-            settings.MinEndSize = 1.5f;
-            settings.MaxEndSize = 2.0f;
+            settings.MinEndSize = 130f;
+            settings.MaxEndSize = 170f;
 
             // Use additive blending.
             settings.BlendState = BlendState.Additive;
