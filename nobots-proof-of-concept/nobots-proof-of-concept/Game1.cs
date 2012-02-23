@@ -43,9 +43,9 @@ namespace nobots_proof_of_concept
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            world = new World(new Vector2(0, 10000));
-            floor = BodyFactory.CreateRectangle(world, 800, 1, 1);
-            floor.Position = new Vector2(400, 481);
+            world = new World(new Vector2(0, 9.81f));
+            floor = BodyFactory.CreateRectangle(world, 0.02f * 800, 0.02f * 1, 1);
+            floor.Position = new Vector2(0.02f * 400, 0.02f * 481);
         }
 
         /// <summary>
