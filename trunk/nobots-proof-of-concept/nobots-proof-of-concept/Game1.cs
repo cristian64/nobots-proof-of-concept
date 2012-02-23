@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
+using nobots_proof_of_concept.ParticleSystem;
 
 namespace nobots_proof_of_concept
 {
@@ -23,6 +24,7 @@ namespace nobots_proof_of_concept
         Body floor;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        PlasmaExplosionParticleSystem plasmaExplosionParticleSystem;
 
         Character currentCharacter;
         MainCharacter mainCharacter;
@@ -62,6 +64,7 @@ namespace nobots_proof_of_concept
             Components.Add(new Box(this, world));
             Components.Add(new Mouse(this));
             Components.Add(new MainCharacter(this));
+            Components.Add(plasmaExplosionParticleSystem = new PlasmaExplosionParticleSystem(this, Content));
 
             base.Initialize();
         }
@@ -100,6 +103,9 @@ namespace nobots_proof_of_concept
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+                plasmaExplosionParticleSystem.AddParticle(new Vector3(100, 50, 0), Vector3.Zero);
 
             // TODO: Add your update logic here
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
