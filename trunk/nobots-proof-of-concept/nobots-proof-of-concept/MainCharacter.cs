@@ -65,7 +65,6 @@ namespace nobots_proof_of_concept
         public override void ProcessKeyboard()
         {
             KeyboardState keybState = Keyboard.GetState();
-
             if (isHaunted)
             {
                 if (keybState.IsKeyDown(Keys.Left))
@@ -89,8 +88,10 @@ namespace nobots_proof_of_concept
                 if(keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown)
                     {
+                        Console.WriteLine("space pressed");
                         isSpaceDown = true;
                         isHaunted = false;
+                        Console.WriteLine("ishaunted "+ isHaunted);
                         ((Game1)Game).ghost.Unhaunt(this);
                     }
 
