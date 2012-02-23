@@ -34,7 +34,7 @@ namespace nobots_proof_of_concept
         public override void Initialize()
         {
             position = new Vector2(-100,-100);
-            particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 15, new Vector3(position.X, position.Y, 0));
+            particleEmitter = new ParticleEmitter(PlasmaExplosionParticleSystem.LastInstance, 20, new Vector3(position.X, position.Y, 0));
             stepSize = 2;
             isSpaceDown = false;
             unhauntNumber = 0;

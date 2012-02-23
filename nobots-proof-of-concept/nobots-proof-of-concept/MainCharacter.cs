@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics.Contacts;
 
 namespace nobots_proof_of_concept
 {
@@ -19,6 +20,7 @@ namespace nobots_proof_of_concept
         public SpriteEffects effect;
 
         bool isSpaceDown;
+        bool touchingBox;
 
         public MainCharacter(Game game, World world) : base(game)
         {
@@ -43,12 +45,29 @@ namespace nobots_proof_of_concept
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
             body.Friction = 10000.0f;
+            body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
+            body.OnSeparation += new OnSeparationEventHandler(body_OnSeparation);
 
             base.LoadContent();
         }
 
+        void body_OnSeparation(Fixture fixtureA, Fixture fixtureB)
+        {
+            if (fixtureB.Body != ((Game1)Game).floor)
+                touchingBox = false;
+        }
+
+        bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            if (fixtureB.Body != ((Game1)Game).floor)
+                touchingBox = true;
+            return true;
+        }
+
         public override void Update(GameTime gameTime)
         {
+            if (touchingBox)
+                body.ApplyForce(new Vector2(0.0f, 3000));
             ProcessKeyboard();  
             base.Update(gameTime);
         }
@@ -85,18 +104,23 @@ namespace nobots_proof_of_concept
                     body.AngularVelocity = 0.0f;
                 }
 
-                if(keybState.IsKeyDown(Keys.Space))
+                if (keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown)
                     {
                         Console.WriteLine("space pressed");
                         isSpaceDown = true;
                         isHaunted = false;
-                        Console.WriteLine("ishaunted "+ isHaunted);
+                        Console.WriteLine("ishaunted " + isHaunted);
                         ((Game1)Game).ghost.Unhaunt(this);
                     }
 
                 if (keybState.IsKeyUp(Keys.Space) && isSpaceDown)
                     isSpaceDown = false;
+            }
+            else
+            {
+                body.FixedRotation = true;
+                body.AngularVelocity = 0.0f;
             }
         }
 
