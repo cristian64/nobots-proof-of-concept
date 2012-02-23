@@ -197,7 +197,7 @@ namespace nobots_proof_of_concept
             drawButton(gameTime);
             for (int i = 0; i < vertices.Count - 1; i++)
             {
-                DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
+                //DrawLine(50 * vertices[i], 50 * vertices[i + 1], Color.White, 1.0f);
             }
         }
 
