@@ -61,6 +61,7 @@ namespace nobots_proof_of_concept
             Window.Title = "Nobots - Proof of Concept";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            graphics.PreferMultiSampling = true;
             world = new World(new Vector2(0, 9.81f));
 
             vertices = new Vertices();
@@ -125,7 +126,7 @@ namespace nobots_proof_of_concept
             grassDeadTexture = Content.Load<Texture2D>("dead_grass");
             mainTheme = Content.Load<Song>("gameconcept1");
             MediaPlayer.Play(mainTheme);
-            MediaPlayer.Volume = 0.3f;
+            MediaPlayer.Volume = 1.0f;
             MediaPlayer.IsRepeating = true;
             Bomb = Content.Load<SoundEffect>("bomb");
             Change = Content.Load<SoundEffect>("change");
@@ -173,6 +174,7 @@ namespace nobots_proof_of_concept
             {
                 alphaAlive = Math.Min(1.5f, alphaAlive + (float)gameTime.ElapsedGameTime.TotalSeconds);
                 alphaDead = Math.Max(0.0f, alphaDead - (float)gameTime.ElapsedGameTime.TotalSeconds);
+                Console.WriteLine("seconds: " + (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
             else
             {

@@ -47,6 +47,7 @@ namespace nobots_proof_of_concept
             body.Position = new Vector2(0.02f * rectangle.X, 0.02f * rectangle.Y);
             body.BodyType = BodyType.Dynamic;
             body.FixedRotation = true;
+           // body.Mass = 10;
             body.OnCollision += new OnCollisionEventHandler(body_OnCollision);
             body.CollisionCategories = Category.Cat5;
             body.CollidesWith = Category.All & ~Category.Cat4;
