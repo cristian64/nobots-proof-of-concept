@@ -83,6 +83,7 @@ namespace nobots_proof_of_concept
             base.Draw(gameTime);
         }
 
+        KeyboardState previousState;
         public override void ProcessKeyboard()
         {
             KeyboardState keybState = Keyboard.GetState();
@@ -106,6 +107,11 @@ namespace nobots_proof_of_concept
                     body.AngularVelocity = 0.0f;
                 }
 
+                if (keybState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up))
+                {
+                    body.ApplyForce(new Vector2(0, -1500));
+                }
+
                 if (keybState.IsKeyDown(Keys.Space))
                     if (!isSpaceDown)
                     {
@@ -124,6 +130,8 @@ namespace nobots_proof_of_concept
                 body.FixedRotation = true;
                 body.AngularVelocity = 0.0f;
             }
+
+            previousState = keybState;
         }
 
         public void Raise(Character character)
