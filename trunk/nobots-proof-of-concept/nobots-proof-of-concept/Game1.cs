@@ -174,7 +174,7 @@ namespace nobots_proof_of_concept
             {
                 alphaAlive = Math.Min(1.5f, alphaAlive + (float)gameTime.ElapsedGameTime.TotalSeconds);
                 alphaDead = Math.Max(0.0f, alphaDead - (float)gameTime.ElapsedGameTime.TotalSeconds);
-                Console.WriteLine("seconds: " + (float)gameTime.ElapsedGameTime.TotalSeconds);
+             //   Console.WriteLine("seconds: " + (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
             else
             {

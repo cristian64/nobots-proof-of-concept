@@ -115,6 +115,7 @@ namespace nobots_proof_of_concept
 
                 if (keybState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up) && isTouchingFloor == true)
                 {
+                    body.Position = new Vector2(body.Position.X, body.Position.Y - 0.1f);
                     body.ApplyForce(new Vector2(0, -1500));
                 }
 
