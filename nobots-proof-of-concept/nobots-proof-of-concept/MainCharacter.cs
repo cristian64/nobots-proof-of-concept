@@ -100,12 +100,16 @@ namespace nobots_proof_of_concept
                     body.FixedRotation = false;
                     effect = SpriteEffects.FlipHorizontally;
                     body.AngularVelocity = -20.0f;
+                    if (touchingBox && isTouchingFloor)
+                        body.Position = new Vector2(body.Position.X, body.Position.Y - 0.01f);
                 }
                 else if (keybState.IsKeyDown(Keys.Right))
                 {
                     body.FixedRotation = false;
                     effect = SpriteEffects.None;
                     body.AngularVelocity = 20.0f;
+                    if(touchingBox && isTouchingFloor)
+                        body.Position = new Vector2(body.Position.X, body.Position.Y - 0.01f);
                 }
                 else
                 {
@@ -115,7 +119,7 @@ namespace nobots_proof_of_concept
 
                 if (keybState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up) && isTouchingFloor == true)
                 {
-                    body.Position = new Vector2(body.Position.X, body.Position.Y - 0.1f);
+                    body.Position = new Vector2(body.Position.X, body.Position.Y - 0.01f);
                     body.ApplyForce(new Vector2(0, -1500));
                 }
 
