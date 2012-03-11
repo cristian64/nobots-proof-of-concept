@@ -33,7 +33,7 @@ namespace nobots_proof_of_concept
         public MainCharacter mainCharacter;
         public Mouse mouse;
         public Ghost ghost;
-        Box box;
+        public Box box;
 
         Texture2D buttonTexture;
         Texture2D controlsTexture;

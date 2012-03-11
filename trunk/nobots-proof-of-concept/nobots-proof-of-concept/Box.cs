@@ -9,7 +9,7 @@ using FarseerPhysics.Factories;
 
 namespace nobots_proof_of_concept
 {
-    class Box : Element
+    public class Box : Element
     {
         SpriteBatch spriteBatch;
 

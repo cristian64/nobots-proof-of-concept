@@ -21,6 +21,7 @@ namespace nobots_proof_of_concept
 
         bool isSpaceDown;
         bool touchingBox;
+        bool isTouchingFloor;
 
         public MainCharacter(Game game, World world) : base(game)
         {
@@ -32,6 +33,7 @@ namespace nobots_proof_of_concept
             effect = SpriteEffects.FlipHorizontally;
             isHaunted = true;
             isSpaceDown = false;
+            isTouchingFloor = true;
 
             base.Initialize();
         }
@@ -55,14 +57,18 @@ namespace nobots_proof_of_concept
 
         void body_OnSeparation(Fixture fixtureA, Fixture fixtureB)
         {
-            if (fixtureB.Body != ((Game1)Game).floor)
+            if (fixtureB.Body == ((Game1)Game).box.body)
                 touchingBox = false;
+            if (fixtureB.Body == ((Game1)Game).floor)
+                isTouchingFloor = false;
         }
 
         bool body_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
         {
-            if (fixtureB.Body != ((Game1)Game).floor)
+            if (fixtureB.Body == ((Game1)Game).box.body)
                 touchingBox = true;
+            if (fixtureB.Body == ((Game1)Game).floor)
+                isTouchingFloor = true;
             return true;
         }
 
@@ -107,7 +113,7 @@ namespace nobots_proof_of_concept
                     body.AngularVelocity = 0.0f;
                 }
 
-                if (keybState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up))
+                if (keybState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up) && isTouchingFloor == true)
                 {
                     body.ApplyForce(new Vector2(0, -1500));
                 }
